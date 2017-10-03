@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#health").submit(function (e) {
+                var frm = $('#health');
+                alert("v")
+                alert(frm.attr('method')+" "+frm.attr('action')+" "+JSON.stringify(form_to_json(frm)))
+                console.log( form_to_json(frm));
+                e.preventDefault()
+
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: frm.attr('action'),
+                    data : form_to_json(frm), //JSON.stringify(data),
+                    contentType:"application/json; charset=utf-8",
+                    success : function(callback){
+                        alert("Response: Name: "+callback.name);
+                        $(this).html("Success!");
+                    },
+                    error : function(){
+                        $(this).html("Error!");
+                    }
+                });
+
+            });
+
+            function form_to_json (selector) {
+                var ary = $(selector).serializeArray();
+                var obj = {};
+                for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
+                return obj;
+            }
+        });
+    </script>
+</head>
+<body>
+<form id="health"  action="http://localhost:8080/object" method="post">
+
+    <input name="id" id="id" value="123">
+    <input name="content" id="content" value="abc">
+    <button type="submit">Add</button>
+</form>
+<div id="message2"></div>
+
+</body>
+</html>

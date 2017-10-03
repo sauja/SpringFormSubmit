@@ -1,0 +1,55 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+<jsp:include page="header.jsp"/>
+
+<form:form class="navbar-form navbar-right" action="/user/update" method="post" modelAttribute="userDetails">
+    <div class="form-group">
+        <form:input class="form-control" path="firstName" placeholder="First Name"/>
+    </div>
+    <div class="form-group">
+        <form:input class="form-control" path="lastName" placeholder="Last Name"></form:input>
+    </div>
+    <div class="container">
+        <div class="col-sm-6" style="height:130px;">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker9'>
+                    <form:input type='text' class="form-control" path="dateOfBirth"/>
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker9').datetimepicker({
+                    viewMode: 'years'
+                });
+            });
+        </script>
+    </div>
+    <div class="form-group">
+        <form:input class="form-control" path="mobile" placeholder="Phone No"></form:input>
+    </div>
+    <button type="submit" class="btn btn-default">Sign In</button>
+</form:form>
+
+
+
+<jsp:include page="footer.jsp"/>
+</body>
+</html>

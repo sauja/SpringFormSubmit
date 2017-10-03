@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<jsp:include page="header.jspx"/>
+
+Health Home Page
+<form:form action="/health/findUser" method="post" modelAttribute="userLogin">
+    <form:input path="email" type="email" placeholder="email"/>
+    <button type="submit">Search</button>
+
+</form:form>
+
+
+<div>
+    Your Policies
+    <c:if test="${not empty policies}">
+
+        <ul>
+            <c:forEach var="listValue" items="${policies}">
+                <li>${policies.id}</li>
+            </c:forEach>
+        </ul>
+
+    </c:if>
+</div>
+
+<jsp:include page="footer.jspx"/>
+</body>
+</html>
